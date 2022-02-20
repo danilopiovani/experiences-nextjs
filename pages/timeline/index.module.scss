@@ -7,6 +7,8 @@ $base-color: #7116db;
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
+  font-size: 1rem;
+  font-family: "Roboto", sans-serif;
 }
 .leftPainel {
   flex: 1;
@@ -15,20 +17,86 @@ $base-color: #7116db;
   position: relative;
   display: flex;
   justify-content: flex-end;
-  margin-right: 100px;
+  margin-right: 50px;
 }
 
 .setDelayBox {
-  width: 300px;
-  height: 300px;
+  width: 500px;
+  height: 200px;
   position: sticky;
-  top: 0;
+  top: 50px;
   background-color: #ddd;
   color: $base-color;
+  border: 1px dashed $base-color;
+  border-top-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.delayInfo {
+  width: 100%;
+  align-self: baseline;
+}
+
+.buttonOptionsContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.buttonOptions {
+  width: 90px;
+  height: 21px;
+  background-color: #ccc;
+  color: $base-color;
+  border-radius: 10px;
+  border: 1px solid $base-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.5s ease-out;
+}
+
+.buttonOptions.optionSeleted {
+  background-color: $base-color;
+  color: #fff;
+}
+
+.buttonOptions:hover {
+  background-color: $base-color;
+  color: #fff;
+}
+
+.buttonsBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.buttom {
+  width: 80px;
+  height: 30px;
+  border: 1px solid $base-color;
+  border-radius: 5px;
+  background-color: lighten($base-color, 15%);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
 .mainContainer {
-  width: 600px;
+  width: 350px;
   box-sizing: border-box;
   background-color: $base-color;
   padding: 50px;
@@ -42,7 +110,7 @@ $base-color: #7116db;
 }
 
 .generalContainer {
-  width: 400px;
+  width: 300px;
   height: 50px;
   border-left: 1px solid rgba(255, 255, 255, 0.4);
 }
@@ -58,7 +126,7 @@ $base-color: #7116db;
 
 .clickArea {
   position: absolute;
-  left: -8px;
+  left: -8.52px;
   top: 0;
   width: 16px;
   height: 16px;
@@ -71,10 +139,22 @@ $base-color: #7116db;
   background-color: white;
 }
 
+.clickArea.willSetDelay {
+  background-color: white;
+  cursor: pointer;
+}
+
+.clickArea.done.willSetDelay {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background-color: #b37df1;
+  cursor: auto;
+}
+
 .clickArea.selectable {
   cursor: pointer;
   transition: all 0.5s ease-out;
 }
+
 .clickArea.selectable:hover {
   background-color: white;
   border-color: $base-color;
@@ -82,16 +162,28 @@ $base-color: #7116db;
 
 .eventStageTitle {
   position: absolute;
-  top: -3px;
+  top: 1px;
   margin-left: 20px;
   width: 300px;
   padding: 0 0 0 5px;
   color: rgba(255, 255, 255, 0.4);
 }
 
+.eventStageTitle.notDone.willSetDelay,
+.eventStageTitle.inProgress.willSetDelay {
+  color: white;
+  cursor: pointer;
+}
+
 .eventStageTitle.done {
   color: white;
 }
+
+.eventStageTitle.done.willSetDelay {
+  color: rgba(255, 255, 255, 0.4);
+  cursor: auto;
+}
+
 .eventStageTitle.selectable {
   cursor: pointer;
 }
@@ -104,6 +196,7 @@ $base-color: #7116db;
   position: absolute;
   left: -8px;
   border: 1px solid rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
   background-color: $base-color;
   border-radius: 15px;
   padding: 2px 10px;
@@ -112,6 +205,16 @@ $base-color: #7116db;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.itemTitleAndTag.itemDelay {
+  background-color: rgb(247, 97, 43);
+  color: white;
+}
+
+.itemTitleAndTag.itemDelayDone {
+  background-color: rgb(11, 180, 95);
+  color: white;
 }
 
 .itemTitleAndTag.done,
@@ -136,6 +239,16 @@ $base-color: #7116db;
 }
 .pulseTag {
   top: 30px;
+}
+
+.checkImage {
+  fill: lighten(black, 15%);
+  width: 20px;
+  height: 25px;
+  z-index: 1000;
+  left: -7px;
+  top: -2px;
+  position: absolute;
 }
 
 @keyframes pulse-white {
